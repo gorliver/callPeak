@@ -4,32 +4,31 @@ call peaks from DNase-seq data
 
 # requirement
 
-perl
-perl module:
-Parallel::ForkManager
-Bio::DB::HTS::Tabix
+    perl
+    perl module:
+    Parallel::ForkManager
+    Bio::DB::HTS::Tabix
 
-python
-bigWigpy (https://github.com/dpryan79/pyBigWig)
+    python
+    bigWigpy (https://github.com/dpryan79/pyBigWig)
 
 # installation
 
 ## 1. Install perl modules:
-./cpanm Parallel::ForkManager
-./cpanm Bio::DB::HTS::Tabix
+    ./cpanm Parallel::ForkManager
+    ./cpanm Bio::DB::HTS::Tabix
 
-cpanm is provided in the directory
+    cpanm is provided in the directory
 
 ## 2. Install pyBigWig
-Please refer to https://github.com/dpryan79/pyBigWig.
+    Please refer to https://github.com/dpryan79/pyBigWig.
 
 ## 3. install callPeak
-git clone https://github.com/gorliver/callPeak
+    git clone https://github.com/gorliver/callPeak
+    cd callPeak
+    chmod +x callPeak.pl
 
-cd callPeak
-chmod +x callPeak.pl
-
-Then add the path of callPeak.pl to PATH.
+    Then add the path of callPeak.pl to PATH.
 
 # usage
 
