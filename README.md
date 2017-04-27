@@ -6,6 +6,7 @@ call peaks from DNase-seq data
 
     perl
     perl module:
+        Inline::Python
         Parallel::ForkManager
         Bio::DB::HTS::Tabix
 
@@ -18,8 +19,9 @@ call peaks from DNase-seq data
 # installation
 
 ## 1. Install perl modules:
-Using cpanm is probably the easiest why to install perl modules.
+Using cpanm is probably the easiest why to install perl modules. A copy of cpanm is provided in the directory.
 
+    ./cpanm Inline::Python
     ./cpanm Parallel::ForkManager
     ./cpanm Bio::DB::HTS::Tabix
 
@@ -118,5 +120,5 @@ Here is the description of the options:
 
               -d              sigma for kernel smooth. default is 50.
 
-              -r              number of random regions for p -value calculation. default is 50000.
+              -r              number of random regions for p-value calculation. default is 50000.
 
