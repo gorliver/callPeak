@@ -78,7 +78,7 @@ if(!(-e $uniqRegionFile)){
 
 
 # start calling peak
-my $callPeak=smooth2->new();
+my $callPeak=smooth->new();
 
 # generate pvalue table, get threthold
 
