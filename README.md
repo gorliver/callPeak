@@ -18,37 +18,39 @@ call peaks from DNase-seq data
 # installation
 
 ## 1. Install perl modules:
+Using cpanm is probably the easiest why to install perl modules.
+
     ./cpanm Parallel::ForkManager
     ./cpanm Bio::DB::HTS::Tabix
 
-    cpanm is provided in the directory
+    
 
 ## 2. Install pyBigWig
-    Please refer to https://github.com/dpryan79/pyBigWig.
+Please refer to https://github.com/dpryan79/pyBigWig.
 
 ## 3. install samtools
-    Please refer to http://www.htslib.org/ for instruction
+Please refer to http://www.htslib.org/ for instruction
     
 ## 3. install callPeak
     git clone https://github.com/gorliver/callPeak
     cd callPeak
     chmod +x callPeak.pl
 
-    Or simplely copy the whole directory to you local mathine.
+Or simplely copy the whole directory to you local mathine.
     
-    Then add the path of callPeak.pl to PATH.
+Then add the path of callPeak.pl to PATH.
 
 # usage
 
 ## 1. generate uniquely mapped regions.
-    To reduce the influence of repeat sequences, callPeak.pl will normalize the read number by mappability of each bins.
+To reduce the influence of repeat sequences, callPeak.pl will normalize the read number by mappability of each bins.
 ### 1. simulate artifical reads from the target genome. 
-    The read length of the simulated reads should be the same as the real data. For example, simulating single end reads with 20bp length in Arabidopsis genome:
+The read length of the simulated reads should be the same as the real data. For example, simulating single end reads with 20bp length in Arabidopsis genome:
   
     wgsim -1 20 -h -N 2000000 Tair10.fa out.read1.fq /dev/null
     
 ### 2. Mapped the simulated reads to target genome.
-    Mapping the simulated reads to target genome using your favorate aligner. In the following command, only reads with MQ>=20 are retained.
+Mapping the simulated reads to target genome using your favorate aligner. In the following command, only reads with MQ>=20 are retained.
     
     bwa aln Tair10.fa out.read1.fq | bwa samse Tair10.fa - out.read1.fq | samtools view -q 20 -bS - | samtools sort - -o simu_sort.bam
     
@@ -59,6 +61,8 @@ call peaks from DNase-seq data
 
     bgzip uniqRegionAra20bp.bed
     
+For more information about bgzip, please check http://www.htslib.org/doc/tabix.html
+    
 ### 5. run callPeak.pl    
     callPeak.pl Tair10DNase-seq_sort.bam chromAra.len uniqRegionAra20bp.bed.gz araPeak 5
 
@@ -66,7 +70,7 @@ This commond will call peaks from bam file. Note that the input bam file need to
     
     
     
-    Here is the description of the options:
+Here is the description of the options:
 
     perl callPeak.pl -b <bam file> -g <chrom length file> -u <unique region file>
 
