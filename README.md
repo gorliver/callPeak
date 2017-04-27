@@ -42,8 +42,9 @@ Then add the path of callPeak.pl to PATH.
 
 # usage
 
-1. Step 1 1. generate uniquely mapped regions.
+## 1. generate uniquely mapped regions.
 To reduce the influence of repeat sequences, callPeak.pl will normalize the read number by mappability of each bins.
+
 ### 1. simulate artifical reads from the target genome. 
 The read length of the simulated reads should be the same as the real data. For example, simulating single end reads with 20bp length in Arabidopsis genome:
   
