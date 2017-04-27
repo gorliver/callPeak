@@ -6,8 +6,8 @@ call peaks from DNase-seq data
 
     perl
     perl module:
-    Parallel::ForkManager
-    Bio::DB::HTS::Tabix
+        Parallel::ForkManager
+        Bio::DB::HTS::Tabix
 
     python
     bigWigpy (https://github.com/dpryan79/pyBigWig)
