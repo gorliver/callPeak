@@ -12,6 +12,9 @@ call peaks from DNase-seq data
     python
     bigWigpy (https://github.com/dpryan79/pyBigWig)
 
+    samtools
+    bedtools
+
 # installation
 
 ## 1. Install perl modules:
@@ -23,16 +26,49 @@ call peaks from DNase-seq data
 ## 2. Install pyBigWig
     Please refer to https://github.com/dpryan79/pyBigWig.
 
+## 3. install samtools
+    Please refer to http://www.htslib.org/ for instruction
+    
 ## 3. install callPeak
     git clone https://github.com/gorliver/callPeak
     cd callPeak
     chmod +x callPeak.pl
 
+    Or simplely copy the whole directory to you local mathine.
+    
     Then add the path of callPeak.pl to PATH.
 
 # usage
 
-    perl callPeak.pl -gs <genome file> -t <target sequence file>
+## 1. generate uniquely mapped regions.
+    To reduce the influence of repeat sequences, callPeak.pl will normalize the read number by mappability of each bins.
+### 1. simulate artifical reads from the target genome. 
+    The read length of the simulated reads should be the same as the real data. For example, simulating single end reads with 20bp length in Arabidopsis genome:
+  
+    wgsim -1 20 -h -N 2000000 Tair10.fa out.read1.fq /dev/null
+    
+### 2. Mapped the simulated reads to target genome.
+    Mapping the simulated reads to target genome using your favorate aligner. In the following command, only reads with MQ>=20 are retained.
+    
+    bwa aln Tair10.fa out.read1.fq | bwa samse Tair10.fa - out.read1.fq | samtools view -q 20 -bS - | samtools sort - -o simu_sort.bam
+    
+### 3. extract uniquely mapped regions
+    bamToBed -i simu_sort.bam | mergeBed -d 1 -i - > uniqRegionAra20bp.bed
+
+### 4. compressed the file using bgzip
+
+    bgzip uniqRegionAra20bp.bed
+    
+### 5. run callPeak.pl    
+    callPeak.pl Tair10DNase-seq_sort.bam chromAra.len uniqRegionAra20bp.bed.gz araPeak 5
+
+This commond will call peaks from bam file. Note that the input bam file need to be sorted.
+    
+    
+    
+    Here is the description of the options:
+
+    perl callPeak.pl -b <bam file> -g <chrom length file> -u <unique region file>
 
     Call DNase-seq peaks using gausss kernel smooth. CallPeak.pl will
     normalize the read number by mappability and local background.
