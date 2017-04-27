@@ -42,7 +42,7 @@ Then add the path of callPeak.pl to PATH.
 
 # usage
 
-## 1. generate uniquely mapped regions.
+1. Step 1 1. generate uniquely mapped regions.
 To reduce the influence of repeat sequences, callPeak.pl will normalize the read number by mappability of each bins.
 ### 1. simulate artifical reads from the target genome. 
 The read length of the simulated reads should be the same as the real data. For example, simulating single end reads with 20bp length in Arabidopsis genome:
@@ -63,7 +63,7 @@ Mapping the simulated reads to target genome using your favorate aligner. In the
     
 For more information about bgzip, please check http://www.htslib.org/doc/tabix.html
     
-### 5. run callPeak.pl    
+## 2. run callPeak.pl    
     callPeak.pl Tair10DNase-seq_sort.bam chromAra.len uniqRegionAra20bp.bed.gz araPeak 5
 
 This commond will call peaks from bam file. Note that the input bam file need to be sorted.
