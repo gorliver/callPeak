@@ -147,7 +147,7 @@ for(my $x=1;$x<=200;$x+=1){
 
 # default is sd, need change
 my $sd=sprintf("%.2f",stdev(\@total));
-
+$sd=3*$sd;
 print "# sd is $sd\n";
 print "#detect threshold\n";
 
