@@ -145,7 +145,7 @@ for(my $x=1;$x<=200;$x+=1){
     push @total,@step;
 }
 
-
+# default is sd, need change
 my $sd=sprintf("%.2f",stdev(\@total));
 
 print "# sd is $sd\n";
