@@ -255,6 +255,7 @@ sub calPval{
 	}
 	my $sig=sqrt($sumx2/$count-($sumx/$count)**2);
 	my $w=1.06*$sig*($count**(-1/5));
+	$w=0.26 if $w>0.26;
 #	print "w is $w\n";
 	
 	for(my $x=0;$x<$density[-1];$x+=1){
