@@ -245,7 +245,7 @@ sub wigOut{
 				else{
 					if($peakOn==1){ # peak end
 						my $pv=$$pval{$peakScore} || 0;
-						print BED "$chr\t$peakStart\t$peakEnd\t$peakScore\_$peakTh\tpeak\t$pv\n" if $peakTh==1;
+						print BED "$chr\t$peakStart\t$peakEnd\t$peakScore\tpeak\t$pv\n" if $peakTh==1;
 						$peakOn=0;
 						$peakTh=0;
 					}
